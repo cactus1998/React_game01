@@ -1,15 +1,18 @@
 import { useState } from "react";
 
 // Player 組件的主體
-export default function Player({ initialname, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive,onChangeName }) {
     // 使用 useState 鉤子來管理玩家名稱和編輯狀態
-    const [playerName, setPlayerName] = useState(initialname);
+    const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
 
     // 當編輯按鈕被點擊時觸發的函數
     function handleEditClick() {
         // 切換編輯狀態
         setIsEditing((editing) => !editing);
+        if(isEditing){
+            onChangeName(symbol,playerName)
+        }
     }
 
     // 當玩家名稱變動時觸發的函數
